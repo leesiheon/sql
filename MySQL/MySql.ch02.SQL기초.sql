@@ -15,22 +15,25 @@
 -- 
 -- select *
 --   from 테이블명;
---
+-- 
 -- select 컬럼1, 컬럼2, 컬럼3
 --   from 테이블명;
 -- ########################
 
 
 -- DEPT 테이블에서 모든 컬럼의 데이터를 조회하시오.
-
+select * from  dept ;
 
 -- DEPT 테이블에서  deptno, dname 컬럼의 데이터만 출력하시오.
+select deptno, dname from dept;
 
 
 -- EMP 테이블에서 JOB, ENAME 컬럼만 출력하시오.
+select job, ename from  emp ;
 
 
 -- EMP 테이블에서 모든 컬럼의 데이터만 출력하시오.
+select * from emp ;
 
 
 
@@ -38,32 +41,43 @@
 -- 컬럼에 별칭(별명) 주기
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
--- AS로 컬럼에 별칭 부여하기. job 컬럼에는 직책을 , enname 컬럼에 이름이라는 별칭을 붙여 출력하시오.
+-- AS로 컬럼에 별칭 부여하기. 
+-- emp 테이블에서 job 컬럼에는 직책을 , ename 컬럼에 이름이라는 별칭을 붙여 출력하시오.
+select job as 직책 , ename as 이름  from emp ;
 
--- AS없이 컬럼에 별칭 부여하기. job 컬럼에는 직책을 , enname 컬럼에 이름이라는 별칭을 붙여 출력하시오.
+-- AS없이 컬럼에 별칭 부여하기. 
+-- emp 테이블에서 job 컬럼에는 직책을 , ename 컬럼에 이름이라는 별칭을 붙여 출력하시오.
+select job  직책 , ename  이름  from emp ;
 
--- '' 로 별칭 부여하기. job 컬럼에는  "aa//aa"를 , enname 컬럼에는 "nick -+name" 이라는 별칭을 붙여 출력하시오.
+-- 작은따옴표('' )로 별칭 부여하기. 
+-- emp 테이블에서 job 컬럼에는  "aa//aa"를 , ename 컬럼에는 "nick -+name" 이라는 별칭을 붙여 출력하시오.
+select job 'aa//aa', ename 'nick -+name'  from emp ;
 
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- null 처리를 위해서는 ifnull() 함수를 사용해야 한다
 -- @@@@@@@@@@@@@@@@@@@@@@@@
-  
--- emp 테이블에서 이름과 mgr 값을 출력하시오. 
+select ifnull(1, 0);
+select ifnull( null, 0);
+ 
+-- emp 테이블에서 ename과 mgr 값을 출력하시오. 
 -- 단, mgr이 null 이면 0으로 바꾸어 출력하시오.
+select ename, ifnull(mgr, 0) from emp; 
 
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 중복 제거 - DISTINCT
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
--- 중복되는 ename 을 제거하고 ename 만 출력하시오. 18개
+-- emp 테이블에서 ename 만 출력하되 중복되는 ename 을 제거하시오. 이병헌이 2명.
+select          ename from emp order by ename ;
+select distinct ename from emp order by ename ;
 
 
-
--- emp 테이블의 deptno 값이 중복되는 것을 제거하여 출력하시오. 17개
-
+-- emp 테이블에서 deptno 값이 중복되는 것을 제거하여 출력하시오. 5개
+select          deptno from emp order by deptno ;
+select distinct deptno from emp order by deptno ;
 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 컬럼 연결,  문자열 연결  
@@ -71,13 +85,22 @@
 --  concat( 컬럼1  , 컬럼2 , 컬럼3, 컬럼4   ) 
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
+-- 'A and B' 를 출력하시오.
+select 'A and B' ;
+
+-- concat 을 이용하여 'A and B' 를 출력하시오.
+select concat( 'A', ' and ', 'B'  ) ;
+
 -- 김사랑 조회하기
+select ename, job from emp where ename = '김사랑' ;
 
 -- '김사랑의 직급은 직원입니다' 출력하기
 -- concat(ename, '의 직급은 ', job, '입니다')
 
 
 -- '김사랑의 직급은 직원입니다' 출력하는 컬럼이름을 '직급'으로 출력하시오
+
+
 
 -- ########################
 -- where 사용법

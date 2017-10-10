@@ -1,8 +1,11 @@
 use mysql;
 
+
+-- test DB 생성
 drop database if exists test;
 create database test  COLLATE 'utf8_general_ci' ;
 
+-- test DB 로 이동
 use test;
 
 -- 테이블 제거
