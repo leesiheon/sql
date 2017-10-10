@@ -91,14 +91,16 @@ select 'A and B' ;
 -- concat 을 이용하여 'A and B' 를 출력하시오.
 select concat( 'A', ' and ', 'B'  ) ;
 
+
 -- 김사랑 조회하기
 select ename, job from emp where ename = '김사랑' ;
 
--- '김사랑의 직급은 직원입니다' 출력하기
--- concat(ename, '의 직급은 ', job, '입니다')
+-- '김사랑의 직급은 사원입니다' 출력하기. concat(ename, '의 직급은 ', job, '입니다')
+select concat( ename, '의  직급은 ', job, '입니다') from emp where ename = '김사랑' ;
 
 
--- '김사랑의 직급은 직원입니다' 출력하는 컬럼이름을 '직급'으로 출력하시오
+-- '김사랑의 직급은 사원입니다' 출력하는 컬럼 이름을 '직급'으로 출력하시오
+select concat( ename, '의  직급은 ', job, '입니다') 직급 from emp where ename = '김사랑' ;
 
 
 
@@ -110,18 +112,29 @@ select ename, job from emp where ename = '김사랑' ;
 --  where 조건
 -- ########################
 
+select * from emp where 1 = 1;
+
+select * from emp where 1 = 2;
+
+select * from emp where ename = ename ;
+
+select * from emp where ename = deptno ;
+
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 -- 산술연산자를 이용한 조건 검색
 -- =, > , >=, <, <=, !=
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
 -- emp 테이블에서 sal이 500보다 크거나 같은 경우만 출력하시오
+select * from emp where sal >= 500   ;
   
--- emp 테이블에서 deptno 가 10 인경우만 출력하시오.
+-- emp 테이블에서 deptno 가 10 인 경우만 출력하시오.
+select * from emp where deptno = 10 ;
  
  
 -- 부정연산( != )
 -- deptno 가 10 이 아닌 사람만 출력하시오.
+select * from emp where deptno != 10 ;
  
  
 -- 문제1.
@@ -136,25 +149,27 @@ select ename, job from emp where ename = '김사랑' ;
 -- and, or, not( !=, <> )
 -- @@@@@@@@@@@@@@@@@@@@@@@@
 
--- deptno 가 10 인 사람만 출력하시오
+-- emp 테이블에서 deptno 가 10 인 직원만 출력하시오
+select * from emp where deptno = 10 ;
 
--- job이 과장인 사람만 출력하시오
+-- job이 과장인 직원만 출력하시오
+select * from emp where job = '과장' ;
+
+-- deptno 가 10  이고(and) job이 과장인 사람만 출력하시오.
+select * from emp where deptno=10  and  job='과장';
+
+-- deptno 가 10  이거나(or) job이 과장인 사람만 출력하시오.
+select * from emp where deptno=10 or job='과장';
 
 
--- deptno 가 10  이고(and) job이 과장인 사람만 출력하시오. 교집합
 
 
--- deptno 가 10  이거나(or) job이 과장인 사람만 출력하시오. 합집합
-
-
-
-
--- 문제. 산술연사자를 이용해서 
+-- 문제 1. 산술연사자를 이용해서 
 -- sal 값이 400보다 크거나 같고 그리고(and) 
 -- sal 값이 500보다 작거나 같은 직원을 출력하시오. 5개
 
 
--- 문제. 산술연사자를 이용해서 
+-- 문제 2. 산술연사자를 이용해서 
 -- sal 값이 400보다 작거나 같고 또는(or) 
 -- sal 값이 500보다 크거나 같은 직원을 출력하시오. 16개
 
@@ -169,20 +184,23 @@ select ename, job from emp where ename = '김사랑' ;
 -- sal 값이 500보다 작거나 같은 직원을 출력하시오
 
 -- 방법1. 산술 연산자를 이용하는 방법5개
+select * from emp where  400<=sal and sal <=500 ;
 
 -- 방법2. between A and B 를 이용하는 방법
-
+select * from emp where sal between 400 and 500
 
 
 -- 문제. 입사일(hiredate)이 2005/01/01 이전인 사람들만 출력하시오
+select * from emp where hiredate < '2005-01-01';
 
 
 
--- 문제. 입사일(hiredate)이 2005/01/01 부터  
--- 2012/12/31 까지 입사한 사람들만 출력하시오
--- 방법1. 비교 연산자를 이용하는 경우
+-- 문제. 입사일(hiredate)이 2005/01/01 부터 2012/12/31 까지 입사한 사람들만 출력하시오
+-- 방법1. 비교 연산자를 이용하는 경우. 10개
+select * from emp where '2005-01-01' <= hiredate and hiredate <= '2012-12-31'  ;
 
--- 방법2. between A and B 를 이용해서 
+-- 방법2. between A and B 를 이용해서. 10개
+select * from emp where hiredate between '2005-01-01' and '2012-12-31'  ;
 
 
 
